@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tesla Model Y 水泥灰 - DMSENSE 社交貼文預覽</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      overflow: hidden;
+    }
+    
+    header {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      color: white;
+      padding: 40px;
+      text-align: center;
+    }
+    
+    header h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    header p {
+      font-size: 1.2em;
+      opacity: 0.9;
+    }
+    
+    .timestamp {
+      margin-top: 10px;
+      font-size: 0.9em;
+      opacity: 0.8;
+    }
+    
+    .gallery {
+      padding: 40px;
+      background: #f8f9fa;
+    }
+    
+    .gallery-title {
+      font-size: 1.8em;
+      color: #333;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    
+    .carousel {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    
+    .carousel-track {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+    
+    .carousel-slide {
+      min-width: 100%;
+      aspect-ratio: 1;
+      background: #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5em;
+      color: #666;
+    }
+    
+    .carousel-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .carousel-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.8);
+      border: none;
+      padding: 15px;
+      cursor: pointer;
+      font-size: 1.5em;
+      border-radius: 50%;
+      transition: all 0.3s;
+    }
+    
+    .carousel-nav:hover {
+      background: white;
+      transform: translateY(-50%) scale(1.1);
+    }
+    
+    .carousel-nav.prev { left: 10px; }
+    .carousel-nav.next { right: 10px; }
+    
+    .carousel-dots {
+      text-align: center;
+      margin-top: 20px;
+    }
+    
+    .dot {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #ddd;
+      margin: 0 5px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .dot.active {
+      background: #f5576c;
+      transform: scale(1.2);
+    }
+    
+    .copywriting {
+      padding: 40px;
+    }
+    
+    .copywriting-title {
+      font-size: 1.8em;
+      color: #333;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    
+    .tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+    
+    .tab-btn {
+      flex: 1;
+      min-width: 150px;
+      padding: 15px 20px;
+      border: 2px solid #667eea;
+      background: white;
+      color: #667eea;
+      font-size: 1.1em;
+      font-weight: bold;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .tab-btn:hover {
+      background: #f8f9ff;
+    }
+    
+    .tab-btn.active {
+      background: #667eea;
+      color: white;
+    }
+    
+    .tab-content {
+      display: none;
+      padding: 30px;
+      background: #f8f9ff;
+      border-radius: 15px;
+      border-left: 5px solid #667eea;
+    }
+    
+    .tab-content.active {
+      display: block;
+    }
+    
+    .tab-content h3 {
+      color: #667eea;
+      margin-bottom: 15px;
+      font-size: 1.5em;
+    }
+    
+    .tab-content .content {
+      line-height: 1.8;
+      color: #333;
+      white-space: pre-line;
+    }
+    
+    .hashtags {
+      margin-top: 20px;
+      color: #667eea;
+      font-weight: bold;
+    }
+    
+    .cta {
+      margin-top: 20px;
+      padding: 15px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-radius: 10px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+    
+    .actions {
+      padding: 40px;
+      text-align: center;
+      background: #f8f9fa;
+      border-top: 2px solid #eee;
+    }
+    
+    .action-btn {
+      display: inline-block;
+      padding: 15px 40px;
+      margin: 10px;
+      font-size: 1.2em;
+      font-weight: bold;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+    
+    .btn-approve {
+      background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    }
+    
+    .btn-approve:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 20px rgba(56,239,125,0.4);
+    }
+    
+    .btn-request {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    }
+    
+    .btn-request:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 20px rgba(245,87,108,0.4);
+    }
+    
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #999;
+      font-size: 0.9em;
+    }
+    
+    @media (max-width: 768px) {
+      header h1 { font-size: 1.8em; }
+      .gallery, .copywriting, .actions { padding: 20px; }
+      .tab-btn { min-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🦁 Tesla Model Y 水泥灰</h1>
+      <p>DMSENSE 社交貼文預覽</p>
+      <div class="timestamp">生成時間：2026-02-22-014452</div>
+    </header>
+    
+    <section class="gallery">
+      <h2 class="gallery-title">📸 8 張分鏡圖</h2>
+      
+      <div class="carousel">
+        <button class="carousel-nav prev" onclick="moveSlide(-1)">❮</button>
+        <div class="carousel-track" id="track">
+          <!-- 圖片會由 JavaScript 動態載入 -->
+        </div>
+        <button class="carousel-nav next" onclick="moveSlide(1)">❯</button>
+      </div>
+      
+      <div class="carousel-dots" id="dots"></div>
+    </section>
+    
+    <section class="copywriting">
+      <h2 class="copywriting-title">✍️ 3 版本文案</h2>
+      
+      <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab('A')">版本 A - 情感共鳴</button>
+        <button class="tab-btn" onclick="switchTab('B')">版本 B - 提問引發</button>
+        <button class="tab-btn" onclick="switchTab('C')">版本 C - Reels 專用</button>
+      </div>
+      
+      <div class="tab-content active" id="tab-A">
+        <h3>版本 A - 情感共鳴型</h3>
+        <div class="content">在這個追求獨特的時代，<br>你的Tesla Model Y 水泥灰展現了與眾不同的品味。<br><br>每一個細節，都是對完美的堅持。<br>每一次駕馭，都是目光的焦點。<br><br>在 DMSENSE，我們不只是服務，<br>而是幫你的愛車，找到屬於它的靈魂。</div>
+        <div class="hashtags">#DMSENSE #汽車美容 #質感升級 #獨一無二 #汽車美學 #專業施工 #細節控 #台灣汽車美容</div>
+        <div class="cta">🎯 私訊預約，享免費諮詢！</div>
+      </div>
+      
+      <div class="tab-content" id="tab-B">
+        <h3>版本 B - 提問引發型</h3>
+        <div class="content">如果你的車可以展現一種態度，你會選：<br><br>A. 低調但有質感 ✅<br>B. 張揚且引人注目 🔴<br>C. 維持原廠就好 ⚪<br><br>選 A 的，你懂什麼叫做「低調的奢華」！<br><br>就像這位車主一樣，<br>不張揚，但絕對有存在感。</div>
+        <div class="hashtags">#DMSENSE #汽車美容 #質感升級 #獨一無二 #汽車美學 #專業施工 #細節控 #台灣汽車美容</div>
+        <div class="cta">🎯 私訊預約，享免費諮詢！</div>
+      </div>
+      
+      <div class="tab-content" id="tab-C">
+        <h3>版本 C - Reels 專用</h3>
+        <div class="content">(0-3 秒) 厭倦了原廠色？<br>(4-8 秒) 來看看蛻變過程！<br>(9-15 秒) 完成！低調但有態度！<br><br>Caption:<br>你的愛車，值得更好 💚<br>按讚 + 收藏 + 追蹤 @dmsense_</div>
+        <div class="hashtags">#DMSENSE #汽車美容 #質感升級 #獨一無二 #汽車美學 #專業施工 #細節控 #台灣汽車美容</div>
+        <div class="cta">🎯 私訊預約，享免費諮詢！</div>
+      </div>
+    </section>
+    
+    <section class="actions">
+      <h2 style="margin-bottom: 20px; color: #333;">✅ 確認發布？</h2>
+      <a href="https://t.me/YOUR_BOT?start=approve_2026-02-22-014452" class="action-btn btn-approve">
+        ✅ 確認發布
+      </a>
+      <a href="https://t.me/YOUR_BOT?start=request_2026-02-22-014452" class="action-btn btn-request">
+        ✏️ 要求修改
+      </a>
+    </section>
+    
+    <footer>
+      <p>🦁 Leo 製作 | DMSENSE © {{TIMESTAMP.split('-')[0]}}</p>
+    </footer>
+  </div>
+  
+  <script>
+    const images = ["reference.jpg"];
+    let currentSlide = 0;
+    
+    // 初始化輪播
+    function initCarousel() {
+      const track = document.getElementById('track');
+      const dotsContainer = document.getElementById('dots');
+      
+      images.forEach((img, index) => {
+        // 添加圖片
+        const slide = document.createElement('div');
+        slide.className = 'carousel-slide';
+        slide.innerHTML = `<img src="${img}" alt="分鏡 ${index + 1}">`;
+        track.appendChild(slide);
+        
+        // 添加圓點
+        const dot = document.createElement('span');
+        dot.className = 'dot' + (index === 0 ? ' active' : '');
+        dot.onclick = () => goToSlide(index);
+        dotsContainer.appendChild(dot);
+      });
+    }
+    
+    function updateCarousel() {
+      const track = document.getElementById('track');
+      track.style.transform = `translateX(-${currentSlide * 100}%)`;
+      
+      const dots = document.querySelectorAll('.dot');
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentSlide);
+      });
+    }
+    
+    function moveSlide(direction) {
+      currentSlide += direction;
+      if (currentSlide < 0) currentSlide = images.length - 1;
+      if (currentSlide >= images.length) currentSlide = 0;
+      updateCarousel();
+    }
+    
+    function goToSlide(index) {
+      currentSlide = index;
+      updateCarousel();
+    }
+    
+    function switchTab(version) {
+      // 切換按鈕狀態
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.textContent.includes(`版本 ${version}`));
+      });
+      
+      // 切換內容
+      document.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.remove('active');
+      });
+      document.getElementById(`tab-${version}`).classList.add('active');
+    }
+    
+    // 頁面載入後初始化
+    window.onload = initCarousel;
+  </script>
+</body>
+</html>
