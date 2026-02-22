@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tesla Model Y 水泥灰 - DMSENSE</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: system-ui; max-width: 1200px; margin: 0 auto; padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; }
+    .container { background: white; border-radius: 20px; padding: 40px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+    h1 { color: #667eea; margin-bottom: 10px; }
+    .subtitle { color: #999; margin-bottom: 30px; }
+    .carousel { position: relative; max-width: 800px; margin: 40px auto; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+    .carousel-track { display: flex; transition: transform 0.5s ease; }
+    .carousel-slide { min-width: 100%; aspect-ratio: 1; }
+    .carousel-slide img { width: 100%; height: 100%; object-fit: cover; }
+    .carousel-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.8); border: none; padding: 15px; cursor: pointer; font-size: 1.5em; border-radius: 50%; }
+    .carousel-nav:hover { background: white; }
+    .carousel-nav.prev { left: 10px; }
+    .carousel-nav.next { right: 10px; }
+    .carousel-dots { text-align: center; margin-top: 20px; }
+    .dot { display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: #ddd; margin: 0 5px; cursor: pointer; }
+    .dot.active { background: #667eea; transform: scale(1.2); }
+    .tabs { display: flex; gap: 10px; margin: 30px 0; flex-wrap: wrap; }
+    .tab-btn { flex: 1; min-width: 150px; padding: 15px; border: 2px solid #667eea; background: white; color: #667eea; font-weight: bold; border-radius: 10px; cursor: pointer; }
+    .tab-btn.active { background: #667eea; color: white; }
+    .tab-content { display: none; padding: 30px; background: #f8f9ff; border-radius: 15px; border-left: 5px solid #667eea; }
+    .tab-content.active { display: block; }
+    .cta { background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 20px; border-radius: 10px; text-align: center; font-weight: bold; margin-top: 20px; }
+    .hashtags { color: #667eea; margin-top: 15px; }
+    footer { text-align: center; margin-top: 40px; color: #999; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🦁 Tesla Model Y 水泥灰</h1>
+    <p class="subtitle">DMSENSE 社交貼文預覽 | 2026-02-22-015112</p>
+    
+    <div class="carousel">
+      <button class="carousel-nav prev" onclick="moveSlide(-1)">❮</button>
+      <div class="carousel-track" id="track"></div>
+      <button class="carousel-nav next" onclick="moveSlide(1)">❯</button>
+    </div>
+    <div class="carousel-dots" id="dots"></div>
+    
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('A')">版本 A - 情感共鳴</button>
+      <button class="tab-btn" onclick="switchTab('B')">版本 B - 提問引發</button>
+      <button class="tab-btn" onclick="switchTab('C')">版本 C - Reels</button>
+    </div>
+    
+    <div class="tab-content active" id="tab-A">
+      <h2>✍️ Tesla Model Y 水泥灰 - 獨特風采</h2>
+      <p style="white-space: pre-line; line-height: 1.8;">在這個追求獨特的時代，
+你的Tesla Model Y 水泥灰展現了與眾不同的品味。
+
+每一個細節，都是對完美的堅持。
+每一次駕馭，都是目光的焦點。
+
+在 DMSENSE，我們不只是服務，
+而是幫你的愛車，找到屬於它的靈魂。</p>
+      <div class="hashtags">#DMSENSE #汽車美容 #質感升級 #獨一無二 #汽車美學 #專業施工 #細節控 #台灣汽車美容</div>
+      <div class="cta">🎯 私訊預約，享免費諮詢！</div>
+    </div>
+    
+    <div class="tab-content" id="tab-B">
+      <h2>✍️ 你是哪種車主？</h2>
+      <p style="white-space: pre-line; line-height: 1.8;">如果你的車可以展現一種態度，你會選：
+
+A. 低調但有質感 ✅
+B. 張揚且引人注目 🔴
+C. 維持原廠就好 ⚪
+
+選 A 的，你懂什麼叫做「低調的奢華」！
+
+就像這位車主一樣，
+不張揚，但絕對有存在感。</p>
+      <div class="hashtags">#DMSENSE #車主測驗 #低調奢華 #汽車改色 #質感首選</div>
+      <div class="cta">🎯 留言告訴我你的選擇！</div>
+    </div>
+    
+    <div class="tab-content" id="tab-C">
+      <h2>✍️ 蛻變只要這一步！</h2>
+      <p style="white-space: pre-line; line-height: 1.8;">(0-3 秒) 厭倦了原廠色？
+(4-8 秒) 來看看蛻變過程！
+(9-15 秒) 完成！低調但有態度！
+
+Caption:
+你的愛車，值得更好 💚
+按讚 + 收藏 + 追蹤 @dmsense_</p>
+      <div class="hashtags">#DMSENSE #汽車美容 #Reels #蛻變 #改裝車</div>
+      <div class="cta">🎯 按讚 + 收藏 + 追蹤！</div>
+    </div>
+    
+    <footer>
+      <p>🦁 Leo 製作 | DMSENSE © 2026</p>
+    </footer>
+  </div>
+  
+  <script>
+    const images = ["01-開場---環境展示.jpg","02-原始狀態.jpg","03-準備過程.jpg","04-施工細節.jpg","05-關鍵步驟.jpg","06-接近完成.jpg","07-成品展示.jpg","08-滿意笑容.jpg"];
+    let currentSlide = 0;
+    
+    const track = document.getElementById('track');
+    const dotsContainer = document.getElementById('dots');
+    
+    images.forEach((img, i) => {
+      const slide = document.createElement('div');
+      slide.className = 'carousel-slide';
+      slide.innerHTML = '<img src="' + img + '" alt="分鏡' + (i+1) + '">';
+      track.appendChild(slide);
+      
+      const dot = document.createElement('span');
+      dot.className = 'dot' + (i === 0 ? ' active' : '');
+      dot.onclick = () => goToSlide(i);
+      dotsContainer.appendChild(dot);
+    });
+    
+    function updateCarousel() {
+      track.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
+      document.querySelectorAll('.dot').forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentSlide);
+      });
+    }
+    
+    function moveSlide(dir) {
+      currentSlide += dir;
+      if (currentSlide < 0) currentSlide = images.length - 1;
+      if (currentSlide >= images.length) currentSlide = 0;
+      updateCarousel();
+    }
+    
+    function goToSlide(i) {
+      currentSlide = i;
+      updateCarousel();
+    }
+    
+    function switchTab(v) {
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.textContent.includes('版本 ' + v));
+      });
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      document.getElementById('tab-' + v).classList.add('active');
+    }
+  </script>
+</body>
+</html>
