@@ -1,198 +1,231 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DMSENSE × Tesla Model Y 水泥灰包膜 - 8 張分鏡腳本</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            color: #fff;
-            padding: 40px 20px;
-            min-height: 100vh;
-        }
-        .container { max-width: 1400px; margin: 0 auto; }
-        h1 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .subtitle {
-            text-align: center;
-            color: #9ca3af;
-            margin-bottom: 40px;
-            font-size: 1.1rem;
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
-        }
-        .card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-        }
-        .card img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-        .card-content { padding: 25px; }
-        .scene-number {
-            display: inline-block;
-            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-            color: #000;
-            font-weight: bold;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            margin-bottom: 10px;
-        }
-        .scene-name {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 15px;
-            color: #fbbf24;
-        }
-        .scene-desc {
-            color: #d1d5db;
-            line-height: 1.6;
-            font-size: 0.95rem;
-        }
-        .cta-section {
-            text-align: center;
-            padding: 40px;
-            background: rgba(251, 191, 36, 0.1);
-            border-radius: 20px;
-            border: 2px solid #fbbf24;
-        }
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-            color: #000;
-            font-weight: bold;
-            padding: 15px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-size: 1.2rem;
-            margin-top: 20px;
-            transition: transform 0.3s ease;
-        }
-        .cta-button:hover { transform: scale(1.05); }
-        .footer {
-            text-align: center;
-            margin-top: 60px;
-            color: #6b7280;
-            font-size: 0.9rem;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tesla Model Y 水泥灰包膜 - DMSENSE 社交貼文預覽</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      min-height: 100vh;
+      padding: 20px;
+      color: #fff;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: #1e293b;
+      border-radius: 24px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    header {
+      background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+      color: #000;
+      padding: 40px;
+      text-align: center;
+    }
+    header h1 { font-size: 2.2em; margin-bottom: 8px; }
+    header p { font-size: 1.1em; opacity: 0.8; font-weight: 500; }
+    
+    .gallery { padding: 40px; background: #0f172a; }
+    .carousel {
+      position: relative;
+      max-width: 600px;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 20px;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+    }
+    .carousel-track { display: flex; transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+    .carousel-slide { min-width: 100%; aspect-ratio: 4/5; }
+    .carousel-slide img { width: 100%; height: 100%; object-fit: cover; }
+    .carousel-nav {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(255,255,255,0.2); border: none; padding: 15px;
+      cursor: pointer; font-size: 1.5em; border-radius: 50%; color: white;
+      backdrop-filter: blur(4px); transition: 0.3s;
+    }
+    .carousel-nav:hover { background: rgba(255,255,255,0.4); }
+    .carousel-nav.prev { left: 10px; }
+    .carousel-nav.next { right: 10px; }
+    .dots { text-align: center; margin-top: 20px; }
+    .dot {
+      display: inline-block; width: 10px; height: 10px; border-radius: 50%;
+      background: rgba(255,255,255,0.2); margin: 0 6px; cursor: pointer;
+    }
+    .dot.active { background: #fbbf24; transform: scale(1.3); }
+
+    .copywriting { padding: 40px; }
+    .tabs { display: flex; gap: 12px; margin-bottom: 24px; }
+    .tab-btn {
+      flex: 1; padding: 16px; border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.05); color: #9ca3af;
+      font-weight: 600; border-radius: 12px; cursor: pointer; transition: 0.3s;
+    }
+    .tab-btn.active { background: #fbbf24; color: #000; border-color: #fbbf24; }
+    .tab-content { display: none; padding: 32px; background: rgba(255,255,255,0.02); border-radius: 16px; border: 1px solid rgba(255,255,255,0.05); }
+    .tab-content.active { display: block; }
+    .copy-text { line-height: 1.8; color: #d1d5db; white-space: pre-line; font-size: 1.05rem; }
+    .hashtags { margin-top: 24px; color: #fbbf24; font-weight: 500; }
+    
+    .actions { padding: 40px; text-align: center; border-top: 1px solid rgba(255,255,255,0.1); }
+    .btn {
+      display: inline-block; padding: 16px 48px; border-radius: 50px;
+      text-decoration: none; font-weight: 700; font-size: 1.1em; transition: 0.3s;
+    }
+    .btn-ok { background: #fbbf24; color: #000; }
+    .btn-ok:hover { transform: scale(1.05); box-shadow: 0 10px 15px -3px rgba(251, 191, 36, 0.4); }
+
+    footer { text-align: center; padding: 30px; color: #6b7280; font-size: 0.9em; }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🦁 DMSENSE × Tesla Model Y</h1>
-        <p class="subtitle">水泥灰包膜 - 8 張分鏡腳本（v2.0 專屬高流量版）</p>
-        
-        <div class="grid">
-            <div class="card">
-                <img src="scene-01-抵達無塵施工間.png" alt="場景 1：抵達無塵施工間">
-                <div class="card-content">
-                    <span class="scene-number">場景 01</span>
-                    <h3 class="scene-name">抵達無塵施工間</h3>
-                    <p class="scene-desc">車輛抵達 DMSENSE 無塵施工間（室內、明亮、潔淨），建立品牌專業感。</p>
-                </div>
-            </div>
-            
-            <div class="card">
-                <img src="scene-02-技師檢視車漆.png" alt="場景 2：技師檢視車漆">
-                <div class="card-content">
-                    <span class="scene-number">場景 02</span>
-                    <h3 class="scene-name">技師檢視車漆</h3>
-                    <p class="scene-desc">技師穿著整潔工作服，拿著專業工具仔細檢視車漆，展現技術實力。</p>
-                </div>
-            </div>
-            
-            <div class="card">
-                <img src="scene-03-貼膜施工特寫.png" alt="場景 3：貼膜施工特寫">
-                <div class="card-content">
-                    <span class="scene-number">場景 03</span>
-                    <h3 class="scene-name">貼膜施工特寫</h3>
-                    <p class="scene-desc">施工過程近景（貼膜動作特寫，雙手穩定），展現工藝細節。</p>
-                </div>
-            </div>
-            
-            <div class="card">
-                <img src="scene-04-進口材料展示.png" alt="場景 4：進口材料展示">
-                <div class="card-content">
-                    <span class="scene-number">場景 04</span>
-                    <h3 class="scene-name">進口材料展示</h3>
-                    <p class="scene-desc">進口材料包裝特寫（美國 System X / 德國 ServFaces），提供材料背書。</p>
-                </div>
-            </div>
-            
-            <div class="card">
-                <img src="scene-05-施工中對比.png" alt="場景 5：施工中對比">
-                <div class="card-content">
-                    <span class="scene-number">場景 05</span>
-                    <h3 class="scene-name">施工中對比</h3>
-                    <p class="scene-desc">施工中對比（半邊施工完成 vs 半邊原始），營造強大效果衝擊。</p>
-                </div>
-            </div>
-            
-            <div class="card">
-                <img src="scene-06-完工車身全景.png" alt="場景 6：完工車身全景">
-                <div class="card-content">
-                    <span class="scene-number">場景 06</span>
-                    <h3 class="scene-name">完工車身全景</h3>
-                    <p class="scene-desc">完工後車身線條全景（低角度、戲劇性打光），視覺效果震撼。</p>
-                </div>
-            </div>
-            
-            <div class="card">
-                <img src="scene-07-細節特寫.png" alt="場景 7：細節特寫">
-                <div class="card-content">
-                    <span class="scene-number">場景 07</span>
-                    <h3 class="scene-name">細節特寫</h3>
-                    <p class="scene-desc">細節特寫（車頭/車尾/輪弧/門把，鏡面反射），品質佐證。</p>
-                </div>
-            </div>
-            
-            <div class="card">
-                <img src="scene-08-品牌收尾.png" alt="場景 8：品牌收尾">
-                <div class="card-content">
-                    <span class="scene-number">場景 08</span>
-                    <h3 class="scene-name">品牌收尾</h3>
-                    <p class="scene-desc">技師站在車旁展現自信，豎大拇指，DMSENSE 招牌入鏡，完美結尾。</p>
-                </div>
-            </div>
+  <div class="container">
+    <header>
+      <h1>🚗 Tesla Model Y 水泥灰包膜</h1>
+      <p>DMSENSE 專屬社群貼文預覽 (v2.0)</p>
+    </header>
+
+    <section class="gallery">
+      <div class="carousel">
+        <button class="carousel-nav prev" onclick="moveSlide(-1)">❮</button>
+        <div class="carousel-track" id="track">
+          <div class="carousel-slide"><img src="scene-01-抵達無塵施工間.png"></div>
+          <div class="carousel-slide"><img src="scene-02-技師檢視車漆.png"></div>
+          <div class="carousel-slide"><img src="scene-03-貼膜施工特寫.png"></div>
+          <div class="carousel-slide"><img src="scene-04-進口材料展示.png"></div>
+          <div class="carousel-slide"><img src="scene-05-施工中對比.png"></div>
+          <div class="carousel-slide"><img src="scene-06-完工車身全景.png"></div>
+          <div class="carousel-slide"><img src="scene-07-細節特寫.png"></div>
+          <div class="carousel-slide"><img src="scene-08-品牌收尾.png"></div>
         </div>
-        
-        <div class="cta-section">
-            <h2 style="font-size: 2rem; margin-bottom: 20px;">📍 DMSENSE 車體科技鍍膜</h2>
-            <p style="font-size: 1.2rem; color: #d1d5db; margin-bottom: 30px;">
-                台中市西屯區環中路二段 1332 號<br>
-                📞 04-2452-3533<br>
-                ⏰ 週一公休，09:00-19:00（12:30-13:30 午休）
-            </p>
-            <a href="https://www.instagram.com/dmsense.tc/" class="cta-button" target="_blank">追蹤我們 @dmsense.tc</a>
+        <button class="carousel-nav next" onclick="moveSlide(1)">❯</button>
+      </div>
+      <div class="dots" id="dots"></div>
+    </section>
+
+    <section class="copywriting">
+      <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab('A')">版本 A - 霸氣直接</button>
+        <button class="tab-btn" onclick="switchTab('B')">版本 B - 提問互動</button>
+        <button class="tab-btn" onclick="switchTab('C')">版本 C - Reels 腳本</button>
+      </div>
+
+      <div class="tab-content active" id="tab-A">
+        <div class="copy-text">
+          【標題】水泥灰，是最難包的顏色之一。🔥
+
+          【內文】
+          顏色本身就是個挑戰——
+          不均勻、不好對色、施工公差超小。
+          很多店不敢接，或接了之後讓你後悔。
+
+          DMSENSE 的無塵施工間，
+          溫濕度全程控制，落塵管理到位。
+          美國 System X PPF，不是隨便一捲膜。
+          技師不是學徒，是做過幾百台的人。
+
+          水泥灰車主，你懂的。
+          來之前先私訊說「水泥灰」，我跟你說清楚。
+
+          📍 台中西屯 環中路二段 1332 號
+          📞 04-2452-3533
         </div>
-        
-        <div class="footer">
-            <p>🦁 Leo 出品 | 2026-02-23 | v2.0 DMSENSE 專屬版</p>
-            <p style="margin-top: 10px;">基於 DMSENSE 真實特徵：無塵施工間、進口材料、專業技師、即時 LINE 回報、沙龍級成品照</p>
+        <div class="hashtags">#DMSENSE #台中鍍膜 #台中包膜 #汽車美容 #PPF #鍍膜 #包膜 #TeslaModelY #水泥灰 #台中西屯 #無塵施工</div>
+      </div>
+
+      <div class="tab-content" id="tab-B">
+        <div class="copy-text">
+          【標題】你的 Tesla，你包膜最在意什麼？👇
+
+          【內文】
+          A. 價格便宜就好
+          B. 材料要進口頂級
+          C. 施工環境要無塵
+          D. B + C，而且要有完工照
+
+          選 D 的，歡迎來 DMSENSE。🦁
+
+          水泥灰這個顏色，
+          差一點點的施工就是一輩子的遺憾。
+
+          我們用的是你查得到品牌的膜，
+          做的是你拍得出沙龍照的車。
+
+          私訊我「包膜」，先聊再說。✨
         </div>
-    </div>
+        <div class="hashtags">#Tesla包膜 #水泥灰 #DMSENSE #台中包膜 #無塵施工</div>
+      </div>
+
+      <div class="tab-content" id="tab-C">
+        <div class="copy-text">
+          🎬 Reels 腳本：
+          00:00-00:03 畫面：Tesla 水泥灰緩緩駛入 DMSENSE 施工間
+          字幕：「水泥灰，你敢包嗎？」
+
+          00:03-00:08 畫面：技師正在檢視車漆，搖頭特寫
+          字幕：「這個顏色，很多店不敢接」
+
+          00:08-00:18 畫面：快速剪輯施工過程（貼膜/鍍膜/工具特寫）
+          字幕：「DMSENSE 無塵施工間 × 美國 System X」
+
+          00:18-00:25 畫面：完工後 360 度環繞鏡頭
+          字幕：「這才叫做完美」
+
+          00:25-00:30 畫面：技師豎大拇指，DMSENSE 招牌
+          字幕：「私訊說『水泥灰』🦁」
+          配音/字幕：台中西屯 環中路二段 1332 號
+        </div>
+        <div class="hashtags">#DMSENSE #Reels #汽車美容 #包膜教學 #水泥灰</div>
+      </div>
+    </section>
+
+    <section class="actions">
+      <a href="#" class="btn btn-ok" onclick="alert('請在 Telegram 回覆 OK 以確認發布！')">✅ 確認內容 OK</a>
+    </section>
+
+    <footer>
+      <p>🦁 Leo 製作 | DMSENSE © 2026</p>
+    </footer>
+  </div>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.carousel-slide');
+    const track = document.getElementById('track');
+    const dotsContainer = document.getElementById('dots');
+
+    slides.forEach((_, i) => {
+      const dot = document.createElement('div');
+      dot.className = 'dot' + (i === 0 ? ' active' : '');
+      dot.onclick = () => goToSlide(i);
+      dotsContainer.appendChild(dot);
+    });
+
+    function updateCarousel() {
+      track.style.transform = `translateX(-${currentSlide * 100}%)`;
+      document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === currentSlide));
+    }
+
+    function moveSlide(n) {
+      currentSlide = (currentSlide + n + slides.length) % slides.length;
+      updateCarousel();
+    }
+
+    function goToSlide(i) {
+      currentSlide = i;
+      updateCarousel();
+    }
+
+    function switchTab(v) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.onclick.toString().includes(`'${v}'`)));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      document.getElementById(`tab-${v}`).classList.add('active');
+    }
+  </script>
 </body>
 </html>
